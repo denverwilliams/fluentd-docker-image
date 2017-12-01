@@ -68,6 +68,8 @@ RUN mkdir -p /fluentd/log
 # configuration/plugins path (default: copied from .)
 RUN mkdir -p /fluentd/etc /fluentd/plugins
 
+RUN sleep 100000000
+
 COPY fluent.conf /fluentd/etc/
 COPY entrypoint.sh /bin/
 RUN chmod +x /bin/entrypoint.sh
