@@ -25,7 +25,7 @@ RUN apt-get update \
  && buildDeps=" \
       make gcc g++ libc-dev \
       ruby-dev \
-      wget bzip2 gnupg dirmngr unzip \
+      wget bzip2 gnupg dirmngr \
     " \
  && apt-get install -y --no-install-recommends $buildDeps \
  && update-ca-certificates \
@@ -34,13 +34,10 @@ RUN apt-get update \
  && gem install json -v 2.1.0 \
  # && gem install fluentd -v 0.14.25 \
 
-# Fetch and Unzip Remote GEM
- && wget -O fluentd.zip $FLUENTD_GEM \
- && mkdir ./gems \
- && unzip fluentd.zip -d ./gems \
+# Fetch and Remote GEM
+ && wget -O fluentd.gem $FLUENTD_GEM \
  # Install Remote GEM
- && gem install ./gems/fluentd*.gem \
- && rm -rf ./gems \
+ && gem install ./fluentd.gem \
 
  && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
  && wget -O /usr/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v${DUMB_INIT_VERSION}/dumb-init_${DUMB_INIT_VERSION}_$dpkgArch \
