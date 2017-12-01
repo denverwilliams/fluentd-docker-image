@@ -70,9 +70,9 @@ RUN mkdir -p /fluentd/etc /fluentd/plugins
 
 RUN sleep 100000000
 
-COPY fluent.conf /fluentd/etc/
-COPY entrypoint.sh /bin/
-RUN chmod +x /bin/entrypoint.sh
+# COPY fluent.conf /fluentd/etc/
+# COPY entrypoint.sh /bin/
+# RUN chmod +x /bin/entrypoint.sh
 
 
 ENV FLUENTD_OPT=""
