@@ -25,7 +25,7 @@ RUN apt-get update \
  && buildDeps=" \
       make gcc g++ libc-dev \
       ruby-dev \
-      wget bzip2 gnupg dirmngr \
+      wget bzip2 gnupg dirmngr unzip \
     " \
  && apt-get install -y --no-install-recommends $buildDeps \
  && update-ca-certificates \
