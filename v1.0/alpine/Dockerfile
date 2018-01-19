@@ -14,6 +14,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Do not split this into multiple RUN!
 # Docker creates a layer for every RUN-Statement
 # therefore an 'apk delete' has no effect
+COPY ../../../fluent*.gem ./fluentd.gem
+COPY ../../../vendor/ ./vendor
+COPY ../../../Gemfile.lock .
+
 RUN apk update \
  && apk upgrade \
  && apk add --no-cache \
@@ -28,7 +32,7 @@ RUN apk update \
  && echo 'gem: --no-document' >> /etc/gemrc \
  && gem install oj -v 2.18.3 \
  && gem install json -v 2.1.0 \
- && gem install fluentd -v 1.1.0 \
+ && gem install ./fluentd.gem \
  && apk del .build-deps \
  && rm -rf /var/cache/apk/* \
  && rm -rf /tmp/* /var/tmp/* /usr/lib/ruby/gems/*/cache/*.gem
