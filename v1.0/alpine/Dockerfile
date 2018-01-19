@@ -14,9 +14,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Do not split this into multiple RUN!
 # Docker creates a layer for every RUN-Statement
 # therefore an 'apk delete' has no effect
-COPY ../../../fluent*.gem ./fluentd.gem
-COPY ../../../vendor/ ./vendor
-COPY ../../../Gemfile.lock .
+COPY fluent.gem ./fluentd.gem
+COPY ./vendor/ ./vendor
+COPY Gemfile.lock .
+COPY Gemfile .
 
 RUN apk update \
  && apk upgrade \
